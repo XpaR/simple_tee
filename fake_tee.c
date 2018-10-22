@@ -96,7 +96,7 @@ int main(int argc, char* argv[])
             state = ERR_WRITE;
             goto cleanup;
         }
-    }while(0 != bytes_read);
+    }while(1);
     if (-1 == close(fd))
     {
         state = ERR_CLOSE;
