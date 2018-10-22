@@ -5,9 +5,6 @@
 #include <fcntl.h>
 #define GETOPT_PARAMS "a"
 
-#define SUCCESS (0)
-#define FAIL	(1)
-
 #define MAX_ERR_LEN (128)
 
 #define MAX_STDIN_READ (1024)
@@ -35,7 +32,7 @@ enum ERRORS
 
 int main(int argc, char* argv[])
 {
-	state = SUCCESS;
+    state = ERR_SUCCESS;
     
     opterr = 0; // suppress getopt error messages
 
