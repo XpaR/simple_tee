@@ -1,3 +1,1 @@
-# simple_tee
-# simple_tee
-# simple_tee
+A simplified copy of the well known 'tee' program.
