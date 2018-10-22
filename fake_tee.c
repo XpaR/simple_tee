@@ -5,11 +5,9 @@
 #include <fcntl.h>
 #define GETOPT_PARAMS "a"
 
-#define MAX_ERR_LEN (128)
-
 #define MAX_STDIN_READ (1024)
 
-char ERRORS_TEXT[][MAX_ERR_LEN] = 
+char* ERRORS_TEXT[] = 
 {
     "",
     "getopt failed",
@@ -69,7 +67,7 @@ int main(int argc, char* argv[])
         goto cleanup;
     }
 
-    fd = open(argv[optind], file_flags);
+    fd = open(argv[optind], file_flags, S_IRUSR|S_IWUSR|S_IWGRP|S_IRGRP|S_IROTH); // -rw-r--r--
     if (-1 == fd)
     {
         state = ERR_OPEN;
@@ -92,7 +90,6 @@ int main(int argc, char* argv[])
             state = ERR_READ;
             goto cleanup;
         }
-        printf("bytes_read == %d\n", bytes_read);    
         bytes_written = write(fd, buf, bytes_read);
         if (-1 == bytes_written)
         {
@@ -102,7 +99,7 @@ int main(int argc, char* argv[])
     }while(0 != bytes_read);
     if (-1 == close(fd))
     {
-        state = ERR_CLOSE;  
+        state = ERR_CLOSE;
         goto cleanup;
     }
     
