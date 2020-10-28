@@ -67,7 +67,7 @@ int main(int argc, char* argv[])
         goto cleanup;
     }
 
-    fd = open(argv[optind], file_flags, S_IRUSR|S_IWUSR|S_IWGRP|S_IRGRP|S_IROTH); // -rw-r--r--
+    fd = open(argv[optind], file_flags, S_IRUSR|S_IWUSR|S_IWGRP|S_IRGRP|S_IROTH); // -rw-rw-r--
     if (-1 == fd)
     {
         state = ERR_OPEN;
